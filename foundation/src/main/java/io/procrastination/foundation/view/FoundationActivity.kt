@@ -1,6 +1,5 @@
 package io.procrastination.foundation.view
 
-import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.databinding.DataBindingUtil
@@ -9,11 +8,12 @@ import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
+import javax.inject.Inject
 
 abstract class FoundationActivity<VB : ViewDataBinding, VM : FoundationViewModel<*>> : AppCompatActivity(), FoundationNavigator {
 
     lateinit var mViewBinding : VB
-    lateinit var mViewModel : VM
+    @Inject lateinit var mViewModel : VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
