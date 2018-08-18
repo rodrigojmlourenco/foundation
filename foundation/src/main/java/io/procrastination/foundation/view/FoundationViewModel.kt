@@ -7,7 +7,7 @@ import android.arch.lifecycle.ViewModel
 import io.procrastination.foundation.domain.usecases.UseCaseExecutor
 
 open class FoundationViewModel<N : FoundationNavigator> : ViewModel(), DefaultLifecycleObserver, UseCaseExecutor {
-    
+
     lateinit var mNavigator: N
 
     override val isLoading: MutableLiveData<Boolean>

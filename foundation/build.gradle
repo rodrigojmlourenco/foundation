@@ -34,31 +34,32 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Dependencies.kotlinStdLib
+    implementation Dependencies.supportCompatV7
 
-    implementation "android.arch.lifecycle:extensions:1.1.1"
-    implementation "android.arch.lifecycle:common-java8:1.1.1"
+    implementation Dependencies.archLifeCycleExts
+    implementation Dependencies.archLifeCycleJava8
 
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
-    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+    implementation NetworkDependencies.retrofit2
+    implementation NetworkDependencies.retrofit2_rx
+    implementation NetworkDependencies.retrofit2_gson
+    implementation NetworkDependencies.okHttp3_logging
 
-    implementation 'com.google.dagger:dagger-android:2.15'
-    implementation 'com.google.dagger:dagger-android-support:2.15' // if you use the support libraries
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.15'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
+    implementation RxDependencies.rxJava
+    implementation RxDependencies.rxAndroid
+    implementation RxDependencies.rxKotlin
 
-    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation InjectionDependencies.dagger2_android
+    implementation InjectionDependencies.dagger2_androidSupport
+    annotationProcessor InjectionDependencies.dagger2_compiler
+    annotationProcessor InjectionDependencies.dagger2_annotation
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation Dependencies.timber
+
+    testImplementation TestingDependencies.junit4
+    androidTestImplementation TestingDependencies.testRunner
+    androidTestImplementation TestingDependencies.espresso
 }
 repositories {
     mavenCentral()
