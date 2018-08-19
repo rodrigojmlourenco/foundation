@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion 28
@@ -20,20 +19,37 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding { enabled true }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 configurations.all {
 
     resolutionStrategy {
         failOnVersionConflict()
+        preferProjectModules()
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':foundation')
 
     implementation Dependencies.kotlinStdLib
     implementation Dependencies.supportCompatV7
+    implementation Dependencies.supportConstraintLayout
+
+    implementation Dependencies.timber
+
+    implementation InjectionDependencies.dagger2_android
+    implementation InjectionDependencies.dagger2_androidSupport
+    kapt InjectionDependencies.dagger2_compiler
+    kapt InjectionDependencies.dagger2_annotation
 
     testImplementation TestingDependencies.junit4
     androidTestImplementation TestingDependencies.testRunner

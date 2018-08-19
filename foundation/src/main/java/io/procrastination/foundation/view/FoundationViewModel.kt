@@ -6,7 +6,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import io.procrastination.foundation.domain.usecases.UseCaseExecutor
 
-open class FoundationViewModel<N : FoundationNavigator> : ViewModel(), DefaultLifecycleObserver, UseCaseExecutor {
+abstract class FoundationViewModel<N : FoundationNavigator> : ViewModel(), DefaultLifecycleObserver, UseCaseExecutor {
 
     lateinit var mNavigator: N
 
@@ -21,5 +21,7 @@ open class FoundationViewModel<N : FoundationNavigator> : ViewModel(), DefaultLi
     fun setLifeCycleOwner(owner : LifecycleOwner) {
         owner.lifecycle.addObserver(this)
     }
+
+
 
 }

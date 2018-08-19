@@ -52,8 +52,8 @@ dependencies {
 
     implementation InjectionDependencies.dagger2_android
     implementation InjectionDependencies.dagger2_androidSupport
-    annotationProcessor InjectionDependencies.dagger2_compiler
-    annotationProcessor InjectionDependencies.dagger2_annotation
+    kapt InjectionDependencies.dagger2_compiler
+    kapt InjectionDependencies.dagger2_annotation
 
     implementation Dependencies.timber
 
