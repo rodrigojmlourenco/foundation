@@ -8,35 +8,39 @@ import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
+import dagger.android.AndroidInjection
 import timber.log.Timber
-import javax.inject.Inject
 
 abstract class FoundationActivity<VB : ViewDataBinding, VM : FoundationViewModel<*>> : AppCompatActivity(), FoundationNavigator {
 
-    lateinit var mViewBinding : VB
-    @Inject lateinit var mViewModel : VM
+    private lateinit var mViewBinding : VB
+
+    abstract fun getViewModel() : VM?
+
+    fun getViewBinding() : VB = mViewBinding
+
+    @LayoutRes abstract fun getLayoutResId() : Int
+
+    abstract fun getBindingVariableId() : Int?
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         mViewBinding = DataBindingUtil.setContentView(this, getLayoutResId())
 
         getViewModel()?.let { vm ->
-            mViewBinding.setVariable(getBindingVariableId(), vm)
+
+            getBindingVariableId()?.let { mViewBinding.setVariable(it, vm) }
+
             vm.setLifeCycleOwner(this)
 
             vm.isLoading.observe(this, Observer { /*TODO: Do something*/ })
         }
     }
 
-    abstract fun getViewModel() : VM?
-
-    fun getViewBinding() : VB =mViewBinding
-
-    @LayoutRes abstract fun getLayoutResId() : Int
-
-    abstract fun getBindingVariableId() : Int
-
+    /* FoundationNavigator
+     **********************************************************************************************/
     override fun onBack() {
         onBackPressed()
     }

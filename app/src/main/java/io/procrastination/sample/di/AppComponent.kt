@@ -8,7 +8,11 @@ import io.procrastination.sample.view.SampleApplication
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidInjectionModule::class, AppModule::class])
+@Component(modules = [
+    AndroidInjectionModule::class,
+    AppModule::class,
+    ActivityBuilder::class
+])
 interface AppComponent {
 
     @Component.Builder

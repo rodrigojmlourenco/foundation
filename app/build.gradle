@@ -44,6 +44,13 @@ dependencies {
     implementation Dependencies.supportCompatV7
     implementation Dependencies.supportConstraintLayout
 
+    implementation Dependencies.archLifeCycleExts
+    implementation Dependencies.archLifeCycleJava8
+
+    implementation RxDependencies.rxJava
+    implementation RxDependencies.rxAndroid
+    implementation RxDependencies.rxKotlin
+
     implementation Dependencies.timber
 
     implementation InjectionDependencies.dagger2_android

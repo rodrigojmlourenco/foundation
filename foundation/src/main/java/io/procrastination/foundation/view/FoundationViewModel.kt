@@ -22,6 +22,10 @@ abstract class FoundationViewModel<N : FoundationNavigator> : ViewModel(), Defau
         owner.lifecycle.addObserver(this)
     }
 
+    fun setNavigator(navigator : N){
+        mNavigator = navigator
+    }
+
 
 
 }
